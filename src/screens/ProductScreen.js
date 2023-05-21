@@ -78,7 +78,7 @@ function ProductScreen() {
                     </Col>
                   </Row>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className="d-grid">
                   <Button
                     className="btn-block"
                     disabled={product.countInStock == 0}
