@@ -19,7 +19,7 @@ function CartScreen() {
   const { id } = useParams();
   const productId = id;
   const [searchParams] = useSearchParams();
-  const qty = Number(searchParams.get("page")) || 1;
+  const qty = Number(searchParams.get("qty")) || 1;
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
