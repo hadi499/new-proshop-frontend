@@ -7,29 +7,20 @@ import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import { login } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
 
 function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const redirect = searchParams.get("redirect") || "/";
+  const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { error, loading, userInfo } = userLogin;
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate(redirect);
-    }
-  }, [userInfo, navigate, redirect]);
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
+    navigate("/admin");
   };
 
   return (
@@ -58,17 +49,14 @@ function LoginScreen() {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" className="mt-2">
           Sign In
         </Button>
       </Form>
 
       <Row className="py-3">
         <Col>
-          New Customer?{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            Register
-          </Link>
+          New Customer? <Link to={"/register"}>Register</Link>
         </Col>
       </Row>
     </FormContainer>

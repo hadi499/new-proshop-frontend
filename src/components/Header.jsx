@@ -22,13 +22,16 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <LinkContainer to="/cart">
-                <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i>Cart
-                </Nav.Link>
-              </LinkContainer>
               {userInfo ? (
-                <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
+                <>
+                  <LinkContainer to="/cart">
+                    <Nav.Link>
+                      <i className="fas fa-shopping-cart"></i>Cart
+                    </Nav.Link>
+                  </LinkContainer>
+
+                  <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
+                </>
               ) : (
                 <LinkContainer to="/login">
                   <Nav.Link>
