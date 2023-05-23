@@ -6,25 +6,18 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import { login } from "../actions/userActions";
-import { useNavigate, Navigate } from "react-router-dom";
 
 function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { error, loading, userInfo } = userLogin;
-
-  if (userInfo) {
-    return <Navigate to="/" />;
-  }
+  const { error, loading } = userLogin;
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
-    navigate("/");
   };
 
   return (

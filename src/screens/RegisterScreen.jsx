@@ -19,13 +19,6 @@ function RegisterScreen() {
   const userRegister = useSelector((state) => state.userRegister);
   const { error, loading } = userRegister;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
-  if (userInfo) {
-    return <Navigate to="/" />;
-  }
-
   const submitHandler = (e) => {
     e.preventDefault();
 

@@ -40,7 +40,7 @@ function CartScreen() {
   };
 
   if (!userInfo) {
-    return <Navigate to="/" />;
+    return <Navigate to="/please" />;
   }
 
   return (
