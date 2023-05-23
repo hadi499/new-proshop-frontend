@@ -14,8 +14,12 @@ import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function CartScreen() {
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const { id } = useParams();
   const productId = id;
   const [searchParams] = useSearchParams();
@@ -34,6 +38,10 @@ function CartScreen() {
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
+
+  if (!userInfo) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Row>

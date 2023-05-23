@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
@@ -18,6 +18,13 @@ function RegisterScreen() {
 
   const userRegister = useSelector((state) => state.userRegister);
   const { error, loading } = userRegister;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  if (userInfo) {
+    return <Navigate to="/" />;
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();

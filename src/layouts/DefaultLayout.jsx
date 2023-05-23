@@ -7,9 +7,9 @@ export default function DefaultLayout() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  if (!userInfo) {
-    return <Navigate to="/login" />;
-  }
+  // if (!userInfo) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <>
