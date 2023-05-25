@@ -6,9 +6,9 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import GuestLayout from "./layouts/GuestLayout";
 import DefaultLayout from "./layouts/DefaultLayout";
-import AdminScreen from "./screens/AdminScreen";
 import NotFound from "./screens/NotFound";
 import LoginPlease from "./components/LoginPlease";
+import ProductListScreen from "./screens/ProductListScreen";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +28,8 @@ const router = createBrowserRouter([
     element: <DefaultLayout />,
     children: [
       {
-        path: "/admin",
-        element: <AdminScreen />,
+        path: "/admin/productList",
+        element: <ProductListScreen />,
       },
       {
         path: "/cart/:id?",
