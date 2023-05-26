@@ -96,22 +96,45 @@ export const createProduct = () => async (dispatch, getState) => {
   }
 };
 
-export const productUpdateReducer = (state = { product: {} }, action) => {
-  switch (action.type) {
-    case PRODUCT_UPDATE_REQUEST:
-      return { loading: true };
+export const updateProduct = (product) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: PRODUCT_UPDATE_REQUEST,
+    });
 
-    case PRODUCT_UPDATE_SUCCESS:
-      return { loading: false, success: true, product: action.payload };
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
-    case PRODUCT_UPDATE_FAIL:
-      return { loading: false, error: action.payload };
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
 
-    case PRODUCT_UPDATE_RESET:
-      return { product: {} };
+    const { data } = await axios.put(
+      `/api/products/update/${product._id}/`,
+      product,
+      config
+    );
+    dispatch({
+      type: PRODUCT_UPDATE_SUCCESS,
+      payload: data,
+    });
 
-    default:
-      return state;
+    dispatch({
+      type: PRODUCT_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.detail
+          ? error.response.data.detail
+          : error.message,
+    });
   }
 };
 
