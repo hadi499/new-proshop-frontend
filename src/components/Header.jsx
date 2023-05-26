@@ -27,13 +27,17 @@ function Header() {
             <Nav className="ms-auto">
               {userInfo ? (
                 <>
-                  <LinkContainer to="/cart">
+                  <LinkContainer to="/cart" className="me-3">
                     <Nav.Link>
                       <i className="fas fa-shopping-cart"></i>Cart
                     </Nav.Link>
                   </LinkContainer>
 
-                  <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
+                  <NavDropdown title={userInfo.name} id="username">
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
                 </>
               ) : (
                 <LinkContainer to="/login">
