@@ -9,6 +9,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import NotFound from "./screens/NotFound";
 import LoginPlease from "./components/LoginPlease";
 import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/productList",
         element: <ProductListScreen />,
+      },
+      {
+        path: "/admin/product/:id/edit",
+        element: <ProductEditScreen />,
       },
       {
         path: "/cart/:id?",
