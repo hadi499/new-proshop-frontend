@@ -4,6 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
+import SearchBox from "./SearchBox";
 
 function Header() {
   const userLogin = useSelector((state) => state.userLogin);
@@ -22,6 +23,7 @@ function Header() {
           <LinkContainer to="/">
             <Navbar.Brand>ProShop</Navbar.Brand>
           </LinkContainer>
+          <SearchBox />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
