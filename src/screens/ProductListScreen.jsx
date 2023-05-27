@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { useNavigate } from "react-router-dom";
-// import Paginate from "../components/Paginate";
+
+import Paginate from "../components/Paginate";
+import { useLocation } from "react-router-dom";
 import {
   listProducts,
   deleteProduct,
@@ -38,7 +40,9 @@ function ProductListScreen({ history, match }) {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // let keyword = history.location.search;
+  let location = useLocation();
+  let keyword = location.search;
+
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET });
 
@@ -49,7 +53,7 @@ function ProductListScreen({ history, match }) {
     if (successCreate) {
       navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts());
+      dispatch(listProducts(keyword));
     }
   }, [
     dispatch,
@@ -58,6 +62,7 @@ function ProductListScreen({ history, match }) {
     successDelete,
     successCreate,
     createdProduct,
+    keyword,
   ]);
 
   const deleteHandler = (id) => {
@@ -136,7 +141,7 @@ function ProductListScreen({ history, match }) {
               ))}
             </tbody>
           </Table>
-          {/* <Paginate pages={pages} page={page} isAdmin={true} /> */}
+          <Paginate pages={pages} page={page} isAdmin={true} />
         </div>
       )}
     </div>
